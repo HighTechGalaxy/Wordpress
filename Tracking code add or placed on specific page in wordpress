@@ -1,0 +1,4 @@
+global $post;
+if($post->post_type == 'page' && $post->ID == 'whatever page id'){
+   echo '<meta name="robots" content="noindex, nofollow" />';
+}
