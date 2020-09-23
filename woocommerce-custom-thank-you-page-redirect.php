@@ -8,3 +8,4 @@ function woo_custom_redirect_after_purchase() {
 		exit;
 	}
 }
+?>
