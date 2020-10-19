@@ -1,4 +1,4 @@
-/* WooCommerce: The Code Below Removes Checkout Fields */
+/* WooCommerce: The Code Below Removes Checkout Fields using "My Custom Functions" https://wordpress.org/plugins/my-custom-functions/ */
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
 unset($fields['billing']['billing_first_name']);
