@@ -1,0 +1,20 @@
+div.wpcf7 { 
+background-color: #fbefde;
+border: 1px solid #f28f27;
+padding:20px;
+}
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 textarea {
+background:#725f4c;
+color:#FFF;
+font-family:lora, sans-serif; 
+font-style:italic;    
+}
+.wpcf7 input[type="submit"],
+.wpcf7 input[type="button"] { 
+background-color:#725f4c;
+width:100%;
+text-align:center;
+text-transform:uppercase;
+}
