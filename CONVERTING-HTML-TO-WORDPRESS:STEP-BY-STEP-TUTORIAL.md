@@ -70,36 +70,36 @@ Close all of the files except for header.php and index.php.
 <br>Next, you’ll be changing the header.php and index.php to fit into WordPress’s format.
 
 # To do this, look for a link in the <head> section that looks like this:
- <br> <link rel=”stylesheet” href=”style.css”>
+ <link rel=”stylesheet” href=”style.css”>
   
 # Replace that link with this:
 
-<br> <link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” />
+ <link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” />
 
 Now, save and close the header.php file. You’re done with it for the moment.
 
 Open your index.php file. It should be empty.
 
 # Enter the following, precisely like this:
-<br> <?php get_header(); ?>
+<?php get_header(); ?>
 
-<br> <?php get_sidebar(); ?>
+<?php get_sidebar(); ?>
 
-<br> <?php get_footer(); ?>
+<?php get_footer(); ?>
 
 
 # The loop starts here:
 
-<br> <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+ <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 
 # and ends here
 
-<br> <?php endwhile; else : ?>
+ <?php endwhile; else : ?>
 
-<br> <p> <?php esc_html_e( 'sorry, no posts matched your criteria.' ); ?> </p>
+ <p> <?php esc_html_e( 'sorry, no posts matched your criteria.' ); ?> </p>
 
-<br> <?php endif; ?>
+<?php endif; ?>
 
 # Step 5: Screenshot and Upload
 
