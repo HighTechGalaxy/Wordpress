@@ -39,13 +39,13 @@ Version – Start with 1.0.
 License, License URL, Tags – This part is only necessary if you’re going to submit the theme into the WordPress directory for others to use. If you’re keeping it for yourself, then don’t worry about it.
 
 # Here’s what that style sheet might look like:
-/*
-Theme Name: Flatsome Child
-Description: This is a child theme for Flatsome Theme
-Author: UX Themes
-Template: flatsome
-Version: 3.0
-*/
+<br>/*
+<br>Theme Name: Flatsome Child
+<br>Description: This is a child theme for Flatsome Theme
+<br>Author: UX Themes
+<br>Template: flatsome
+<br>Version: 3.0
+<br>*/
 
 Once you’re done with the header, paste the CSS code from the static HTML site into your file. Save the file in your theme folder and close it.
 
@@ -59,8 +59,8 @@ WordPress uses PHP to access database information. As a result, your existing HT
 # Go through the WordPress files that were created and copy that code into the following areas:
 
 Header.php – This entails everything from the beginning of your HTML code up to the main content area. Right before the section marked </head> you’ll have to copy and paste 
-<br> <?php wp_head();?>
-<br> Sidebar.php – This is where you put all the code from the section marked <aside>
+<br><?php wp_head();?>
+<br>Sidebar.php – This is where you put all the code from the section marked <aside>
 <br>Footer.php – This section starts at the end of the sidebar and goes up to the end of the file. Add a call for <?php wp_footer();?> before closing off the bracket with <br> <br></body>.
 Once you’ve done that, close the index.html file and save your other data to the theme folder.
 
@@ -70,7 +70,7 @@ Close all of the files except for header.php and index.php.
 <br>Next, you’ll be changing the header.php and index.php to fit into WordPress’s format.
 
 # To do this, look for a link in the <head> section that looks like this:
- <br> <link rel=”stylesheet” href=”style.css”>
+ <br><link rel=”stylesheet” href=”style.css”>
   
 # Replace that link with this:
 
