@@ -13,11 +13,11 @@ The first thing that you’ll need to do is create a new theme folder on your de
 
 Now, go to the code editor and create text files. There are five different files you’ll want to create:
 
-Style.css
-Index.php
-Header.php
-Sidebar.php
-Footer.php
+<br> Style.css
+<br> Index.php
+<br> Header.php
+<br> Sidebar.php
+<br> Footer.php
 
 # Step 2: Copy CSS Code
 Next, you’ll have to copy the CSS coding from your old website onto a WordPress Style Sheet.
@@ -52,53 +52,54 @@ Once you’re done with the header, paste the CSS code from the static HTML site
 # Step 3: Separate Existing HTML
 WordPress uses PHP to access database information. As a result, your existing HTML code has to be chopped into separate pieces so that the WordPress CMS can properly string them together.
 
-To do this, you’ll have to copy parts of the original HTML document into several different PHP files.
+<br>To do this, you’ll have to copy parts of the original HTML document into several different PHP files.
 
-First, open your index.html file.
+<br> First, open your index.html file.
 
 # Go through the WordPress files that were created and copy that code into the following areas:
 
-Header.php – This entails everything from the beginning of your HTML code up to the main content area. Right before the section marked </head> you’ll have to copy and paste <?php wp_head();?>
-Sidebar.php – This is where you put all the code from the section marked <aside>
-Footer.php – This section starts at the end of the sidebar and goes up to the end of the file. Add a call for <?php wp_footer();?> before closing off the bracket with </body>.
+Header.php – This entails everything from the beginning of your HTML code up to the main content area. Right before the section marked </head> you’ll have to copy and paste 
+<br> <?php wp_head();?>
+<br> Sidebar.php – This is where you put all the code from the section marked <aside>
+<br>Footer.php – This section starts at the end of the sidebar and goes up to the end of the file. Add a call for <?php wp_footer();?> before closing off the bracket with <br> <br></body>.
 Once you’ve done that, close the index.html file and save your other data to the theme folder.
 
 Close all of the files except for header.php and index.php.
 
 # Step 4: Change the Header.php and Index.php Files for WordPress
-Next, you’ll be changing the header.php and index.php to fit into WordPress’s format.
+<br>Next, you’ll be changing the header.php and index.php to fit into WordPress’s format.
 
 # To do this, look for a link in the <head> section that looks like this:
-  <link rel=”stylesheet” href=”style.css”>
+ <br> <link rel=”stylesheet” href=”style.css”>
   
 # Replace that link with this:
 
-<link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” />
+<br><link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” />
 
 Now, save and close the header.php file. You’re done with it for the moment.
 
 Open your index.php file. It should be empty.
 
 # Enter the following, precisely like this:
-<?php get_header(); ?>
+<br><?php get_header(); ?>
 
-<?php get_sidebar(); ?>
+<br><?php get_sidebar(); ?>
 
-<?php get_footer(); ?>
+<br><?php get_footer(); ?>
 
 
 # The loop starts here:
 
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<br><?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 
 # and ends here
 
-<php endwhile; else : ?>
+<br> <?php endwhile; else : ?>
 
-<p> <?php esc_html_e( 'sorry, no posts matched your criteria.' ); ?> </p>
+<br><p> <?php esc_html_e( 'sorry, no posts matched your criteria.' ); ?> </p>
 
-<?php endif; ?>
+<br><?php endif; ?>
 
 # Step 5: Screenshot and Upload
 
@@ -153,29 +154,29 @@ However, this time, you’re going to add a tag titled “template.” Make sure
 # Step 4: Create a Functions.php
 Next, you’ll create a functions.php and inherit the parent styles for the child theme.
 
-To do this, create a new file and call it functions.php. Make sure you start it off with <?php.
+To do this, create a new file and call it functions.php. Make sure you start it off with<br> <?php.
 
-Now, input the following code:
+<br> Now, input the following code:
 
-function child_theme_enqueue_styles() {
+<br> function child_theme_enqueue_styles() {
 
-$parent_style = ‘parent-style’;
+ <br> $parent_style = ‘parent-style’;
 
-wp_enqueue_style( $parent_style, get_template_directory_uri() . ‘/style.css’ );
+<br> wp_enqueue_style( $parent_style, get_template_directory_uri() . ‘/style.css’ );
 
-wp_enqueue_style( ‘child-style’,
+<br> wp_enqueue_style( ‘child-style’,
 
-get_stylesheet_directory_uri() . ‘/style.css’,
+<br> get_stylesheet_directory_uri() . ‘/style.css’,
 
-array( $parent_style ),
+<br> array( $parent_style ),
 
-wp_get_theme()->get(‘Version’)
+<br> wp_get_theme()->get(‘Version’)
 
-);
+<br> );
 
-}
+<br> }
 
-add_action( ‘wp_enqueue_scripts’, ‘child_theme_enqueue_styles’ );
+<br>add_action( ‘wp_enqueue_scripts’, ‘child_theme_enqueue_styles’ );
 
 
 This code lets WordPress know to go to the parent theme and use the styles that are listed there for the child theme.
