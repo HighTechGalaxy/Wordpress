@@ -71,11 +71,11 @@ Close all of the files except for header.php and index.php.
 
 # To do this, look for a link in the <head> section that looks like this:
   
-<br> <p><link rel="stylesheet" href="style.css"></p>
+ <p><link rel="stylesheet" href="style.css"></p>
   
 # Replace that link with this:
 
-<br> <p><link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” /><p>
+ <p><link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” /><p>
 
 Now, save and close the header.php file. You’re done with it for the moment.
 
@@ -83,11 +83,11 @@ Open your index.php file. It should be empty.
 
 # Enter the following, precisely like this:
 
-<br> <p><?php get_header(); ?> </p>
+ <p><?php get_header(); ?> </p>
 
- <br> <p><?php get_sidebar(); ?> </p>
+  <p><?php get_sidebar(); ?> </p>
 
-<br> <p><?php get_footer(); ?> </p>
+ <p><?php get_footer(); ?> </p>
 
 
 # The loop starts here:
