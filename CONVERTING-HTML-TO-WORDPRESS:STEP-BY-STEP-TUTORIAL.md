@@ -70,9 +70,11 @@ Close all of the files except for header.php and index.php.
 <br>Next, you’ll be changing the header.php and index.php to fit into WordPress’s format.
 
 # To do this, look for a link in the <head> section that looks like this:
-<link rel=”stylesheet” href=”style.css”>
+  
+<link rel="stylesheet" href="style.css">
   
 # Replace that link with this:
+
 <link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” />
 
 Now, save and close the header.php file. You’re done with it for the moment.
@@ -80,6 +82,7 @@ Now, save and close the header.php file. You’re done with it for the moment.
 Open your index.php file. It should be empty.
 
 # Enter the following, precisely like this:
+
 <?php get_header(); ?>
 
 <?php get_sidebar(); ?>
