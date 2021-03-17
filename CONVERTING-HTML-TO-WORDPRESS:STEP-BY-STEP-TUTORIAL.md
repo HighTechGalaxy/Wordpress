@@ -71,11 +71,11 @@ Close all of the files except for header.php and index.php.
 
 # To do this, look for a link in the <head> section that looks like this:
   
-<link rel="stylesheet" href="style.css">
+<br> <p><link rel="stylesheet" href="style.css"></p>
   
 # Replace that link with this:
 
-<link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” />
+<br> <p><link rel=”stylesheet” href=”<?php echo get_template_directory_uri(); ?>/style.css” type=”text/css” media=”all” /><p>
 
 Now, save and close the header.php file. You’re done with it for the moment.
 
@@ -83,25 +83,25 @@ Open your index.php file. It should be empty.
 
 # Enter the following, precisely like this:
 
-<?php get_header(); ?>
+<br> <p><?php get_header(); ?> </p>
 
-<?php get_sidebar(); ?>
+ <br> <p><?php get_sidebar(); ?> </p>
 
-<?php get_footer(); ?>
+<br> <p><?php get_footer(); ?> </p>
 
 
 # The loop starts here:
 
- <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<br> <p> <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?></p>
 
 
 # and ends here
 
- <?php endwhile; else : ?>
+<br> <p><?php endwhile; else : ?></p>
 
- <p> <?php esc_html_e( 'sorry, no posts matched your criteria.' ); ?> </p>
+<br> <p> <?php esc_html_e( 'sorry, no posts matched your criteria.' ); ?> </p>
 
-<?php endif; ?>
+<br><p><?php endif; ?></p>
 
 # Step 5: Screenshot and Upload
 
