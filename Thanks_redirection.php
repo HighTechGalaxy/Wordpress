@@ -14,6 +14,37 @@ document.addEventListener( 'wpcf7mailsent', function( event ) {
 </script>
 
 
+#Here is an example of the code for two different pages
+
+
+<?php
+ add_action('wp_footer', 'cf7_footer_script');
+//This function prints the JavaScript to the footer
+function cf7_footer_script(){ 
+ 
+//if page name is contact.
+if ( is_page('11')) {?>
+  
+    <script>
+    document.addEventListener( 'wpcf7mailsent', function( event ) {
+            location = 'https://website.loudliv.com/thanks/';
+        }, false );
+    </script>
+ 
+<?php } else if ( is_page('14')) /* if page name is download */ {?>
+  
+    <script>
+    document.addEventListener( 'wpcf7mailsent', function( event ) {
+            location = 'https://website.loudliv.com/thanks/';
+        }, false );
+    </script>
+  
+<?php } 
+     
+}
+
+
+
 
 #Here is an example of the code for two different pages USING FOR ID.
 
