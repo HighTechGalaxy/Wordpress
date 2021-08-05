@@ -1,4 +1,4 @@
-#Updated meta Title & description on s
+#Updated meta Title & description on specific page
 
 <?php  
     $curPageName = substr($_SERVER["https://www.ronwilson.com/events/"],strrpos($_SERVER["https://www.ronwilson.com/events/"],"/")+1);  
