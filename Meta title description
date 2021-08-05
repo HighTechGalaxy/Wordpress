@@ -1,0 +1,7 @@
+#Updated meta Title & description on s
+
+<?php  
+    $curPageName = substr($_SERVER["https://www.ronwilson.com/events/"],strrpos($_SERVER["https://www.ronwilson.com/events/"],"/")+1);  
+    echo '<title>Salon Professional Education Events | Salon Education Events </title>';
+echo '<meta name="description" content="RWA SERIOUS BEAUTY offers salon professionals the best education, Including providing Certifications on new services, Events seminars and workshops on anything beauty." />'; 
+  ?>
