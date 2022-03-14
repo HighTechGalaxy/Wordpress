@@ -1,0 +1,20 @@
+
+For Google Fonts:
+add_filter( 'elementor/frontend/print_google_fonts', '__return_false' );
+
+For Font Awesome:
+
+add_action('elementor/frontend/after_register_styles',function() {
+	foreach( [ 'solid', 'regular', 'brands' ] as $style ) {
+		wp_deregister_style( 'elementor-icons-fa-' . $style );
+	}
+}, 20 );
+
+
+
+For Eicons: 
+
+add_action( 'wp_enqueue_scripts', 'remove_default_stylesheet', 20 ); 
+function remove_default_stylesheet() { 
+	wp_deregister_style( 'elementor-icons' ); 
+}
