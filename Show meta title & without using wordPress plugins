@@ -1,0 +1,28 @@
+
+#1 First of all, please disable all WordPress SEO plugins and remove the wp_head() call from your theme. We are not going to show meta information without any plugins and the wp_head() call.
+#2 Now Copy the following code format and paste it in the <head> section of your WordPress theme
+
+<?php $header = array(
+    //Home Page
+    10 => array(
+        'title' => 'The Title  Of Your Page Goes here',
+        'meta_description' => 'Meta description of the page',
+        'robots'=> 'noodp',
+        'canonical'=>'Canonical URL of the page'
+    ),
+    // About Page
+    17 => array(
+        'title' => 'Title of the page',
+        'meta_description' => 'meta description',
+        'robots'=> 'noindex,follow',
+        'canonical'=>'Canonical URL'
+    ),
+);?>
+
+
+#3 Now use the following code snippet to display meta tags
+
+<title><?=$header[get_queried_object_id()]['title']?></title>
+<meta name="description" content="<?=$header[get_queried_object_id()]['meta_description']?>"/>
+<meta name="robots" content="<?=$header[get_queried_object_id()]['robots']?>"/>
+<link rel="canonical" href="<?=$header[get_queried_object_id()]['canonical']?>"/>
