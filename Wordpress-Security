@@ -1,0 +1,49 @@
+By using: https://wordpress.org/support/article/hardening-wordpress/
+
+Changing file permissions
+
+For Directories:
+
+find /path/to/your/wordpress/install/ -type d -exec chmod 755 {} \;
+
+For Files:
+
+find /path/to/your/wordpress/install/ -type f -exec chmod 644 {} \;
+
+Regarding Automatic Updates
+When you tell WordPress to perform an automatic update, all file operations are performed as the user that owns the files, not as the web server’s user. All files are set to 0644 and all directories are set to 0755, and writable by only the user and readable by everyone else, including the web server.
+
+
+Securing wp-includes:
+
+# Block the include-only files.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^wp-admin/includes/ - [F,L]
+RewriteRule !^wp-includes/ - [S=3]
+RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
+RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
+RewriteRule ^wp-includes/theme-compat/ - [F,L]
+</IfModule>
+
+# BEGIN WordPress
+
+
+Securing wp-config.php
+
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
+
+
+Disable File Editing
+define('DISALLOW_FILE_EDIT', true);
+
+Security through obscurity:
+
+-> Rename the administrative account: Rename the existing account in the MySQL command-line client with a command like UPDATE wp_users SET user_login = 'newuser' WHERE user_login = 'admin';, or by using a MySQL frontend like phpMyAdmin.
+-> Change the table_prefix: 
+
+
