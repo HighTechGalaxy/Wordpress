@@ -1,0 +1,14 @@
+<img src="<?php echo get_template_directory_uri(); ?>/images/mindset.jpg" />
+
+src="<?php echo base_url()?>your_theme_dir/image_dir/img.ext"
+As well
+src="<?php bloginfo('template_url'); ?>/image_dir/img.ext"
+
+
+ themes
+   |-> your theme
+          |-> images
+                |->subfolder
+                      |-> examples.jpg
+                      
+                       <img class="article-image" src="<?php bloginfo('template_directory'); ?> /images/subfolder/example.jpg" border="0" alt="">
