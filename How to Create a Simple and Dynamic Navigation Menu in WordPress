@@ -1,0 +1,26 @@
+Step 1: Register Custom Navigation Menu
+
+Which Files Will Be Needed for Modification?
+functions.php – To register the menu
+template file – To display the menu
+
+register_nav_menu('primary-header-menu',__( 'Header Menu' ));
+
+n this example, we are registering the primary header menu. We can also register multiple menus at a time.
+
+register_nav_menus(array(
+    'primary' => __('Primary Menu', 'My_First_WordPress_Theme'),
+    'secondary' => __('Secondary Menu',       'My_First_WordPress_Theme'),
+    'My_custome_menu' => __('finally Menu', 'My_First_WordPress_Theme')
+));
+
+Step 2: Display the Custom Navigation Menu
+
+We can display a custom navigation menu the menu in footer than we will need to override the footer.php
+
+wp_nav_menu( array( 'theme_location' => 'primary' ) );
+
+Step 3: Style the Custom Navigation Menu
+If we want a specific look for the website we can style the navigation menu by referencing custom CSS classes in the wp_nav_menu function call in the previous step.
+
+wp_nav_menu( array( 'theme_location' => 'primary', 'container_class' => 'my_css_class' ) );
