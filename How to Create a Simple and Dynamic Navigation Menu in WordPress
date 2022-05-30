@@ -1,3 +1,63 @@
+https://www.wpbeginner.com/wp-themes/how-to-add-custom-navigation-menus-in-wordpress-3-0-themes/
+=====================================================================
+How to Add Custom Navigation Menus in WordPress Themes
+
+Creating Custom Navigation Menus in WordPress Themes
+To add a custom navigation menu, the first thing you need to do is register your new navigation menu by adding this code to your theme’s functions.php file.
+
+function wpb_custom_new_menu() {
+  register_nav_menu('my-custom-menu',__( 'My Custom Menu' ));
+}
+add_action( 'init', 'wpb_custom_new_menu' );
+
+============================= Or ===========================================
+
+function wpb_custom_new_menu() {
+  register_nav_menus(
+    array(
+      'my-custom-menu' => __( 'My Custom Menu' ),
+      'extra-menu' => __( 'Extra Menu' )
+    )
+  );
+}
+add_action( 'init', 'wpb_custom_new_menu' );
+
+You will need to add this code in your theme’s template file where you want to display your menu.
+
+
+<?php
+wp_nav_menu( array( 
+    'theme_location' => 'my-custom-menu', 
+    'container_class' => 'custom-menu-class' ) ); 
+?>
+
+
+You can use the CSS class .custom_menu_class to style your menu by adding custom CSS code. Here is a sample CSS to help you get started:
+
+div.custom-menu-class ul {
+    margin:20px 0px 20px 0px;
+    list-style-type: none;
+    list-style: none;
+    list-style-image: none;
+    text-align:right;
+    display:inline-block;   
+}
+div.custom-menu-class li {
+    padding: 0px 20px 0px 0px;
+    display: inline-block;
+} 
+ 
+div.custom-menu-class a { 
+    color:#000;
+}
+
+
+
+
+
+===========================================================================================================================================
+===========================================================================================================================================
+
 Step 1: Register Custom Navigation Menu
 
 Which Files Will Be Needed for Modification?
@@ -6,7 +66,7 @@ template file – To display the menu
 
 register_nav_menu('primary-header-menu',__( 'Header Menu' ));
 
-n this example, we are registering the primary header menu. We can also register multiple menus at a time.
+in this example, we are registering the primary header menu. We can also register multiple menus at a time.
 
 register_nav_menus(array(
     'primary' => __('Primary Menu', 'My_First_WordPress_Theme'),
