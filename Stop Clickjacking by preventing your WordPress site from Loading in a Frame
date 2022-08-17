@@ -1,0 +1,55 @@
+/**
+ * Clickjacking protection
+ * following code into your functions.php file
+ * Add header to stop site loading in an iFrame.
+ **/
+function wc_prevent_clickjacking() {
+    header( 'X-FRAME-OPTIONS: SAMEORIGIN' );
+}
+add_action( 'send_headers', 'wc_prevent_clickjacking', 10 );
+
+
+/**
+ * The HTTP header X-Frame-Options: SAMEORIGIN should be set.
+ *Inside your theme create a folder named JS and cut and paste that code snippet into a file called clickjack-protection.js
+ * Older browsers do not support the X-Frame-Options header, so the following
+ * JavaScript will act as a workaround.
+ */
+try { top.document.domain } catch (e) {
+    var f = function() {
+        document.body.innerHTML = '';
+    };
+    setInterval( f, 1 );
+    if ( document.body ) {
+        document.body.onload = f;
+    };
+}
+
+
+/**
+ * Clickjacking projection for old browsers
+ * following code into your functions.php file
+ * Header not supported by older browsers, use JS fallback.
+ **/
+ function wc_prevent_clickjacking_older_browsers() {
+    $script_url = get_stylesheet_directory_uri() . 'js/clickjack-protection.js';
+    wp_enqueue_script(
+        'clickjack-protection-js',
+        $script_url
+    );
+    // Clickjack headers not supported below IE8.
+    wp_script_add_data( 'clickjack-protection-js', 'conditional', 'lt IE 8' );
+}
+add_action( 'wp_enqueue_scripts', 'wc_prevent_clickjacking_older_browsers', 10 );
+
+
+/**
+ * Clickjacking projection for old browsers
+ * following code into your functions.php file
+ *
+ **/
+
+function block_frames() {
+header( 'X-FRAME-OPTIONS: SAMEORIGIN' );
+}
+add_action( 'send_headers', 'block_frames', 10 );
