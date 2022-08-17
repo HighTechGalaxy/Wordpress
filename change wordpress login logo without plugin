@@ -1,0 +1,38 @@
+/*Set Logo to login page*/
+function my_login_logo_one() { 
+?> 
+<style type="text/css"> 
+body.login div#login h1 a {
+  background: url(https://blog.livlong.com/wp-content/uploads/2022/08/w-logo-blue.png) no-repeat center center; 
+	background-size: 200px;
+    height: 80px;
+    margin: 0 auto;
+    width: 279px;
+} 
+</style>
+<?php 
+} add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
+
+
+
+/*@ Change WordPress Admin Login Logo Link URL  */
+if ( !function_exists('tf_wp_admin_login_logo_url') ) :
+ 
+    function tf_wp_admin_login_logo_url() {
+        return home_url();
+    }
+    add_filter( 'login_headerurl', 'tf_wp_admin_login_logo_url' );
+ 
+endif;
+
+
+/*@ Change WordPress Admin Login Logo's Title  */
+if ( !function_exists('tf_wp_admin_login_logo_title') ) :
+ 
+    function tf_wp_admin_login_logo_title( $headertext ) {
+        $headertext = esc_html__( get_bloginfo('name'), 'plugin-textdomain' );
+        return $headertext;
+    }
+    add_filter( 'login_headertext', 'tf_wp_admin_login_logo_title' );
+ 
+endif;
