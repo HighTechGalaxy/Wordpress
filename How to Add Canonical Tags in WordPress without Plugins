@@ -1,0 +1,12 @@
+<!-- Self referential canonical tag on all pages -->
+<?php
+   if ( is_front_page() ) {
+      $canonical_url = get_home_url();
+      if ( ! is_main_site() ) { // add trailing slash for subsite home directories
+         $canonical_url = $canonical_url . '/';
+      }
+   } else {
+      $canonical_url = get_permalink();
+   }
+?>
+<link rel="canonical" href="<?php echo $canonical_url ?>" />
