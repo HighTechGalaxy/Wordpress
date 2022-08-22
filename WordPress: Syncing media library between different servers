@@ -1,0 +1,29 @@
+https://wp-qa.com/wordpress-syncing-media-library-between-different-servers
+
+OK, so this seems to be a pretty uncommon use case. Hopefully this won't be closed due to a lack of research - I've done research, I just can't find anyone else who has required this setup.
+
+We have three servers with the same WordPress site - a Live version, a Beta version, and a Kiosk version (a limited version of the site used for an iPad kiosk). The Beta site is deployed from a beta branch on Github, while the Live and Kiosk sites are both deployed from the master branch. Any differences in functionality between the sites are controlled by environment variables, beyond that they share the same code.
+
+The wp-content/uploads folder is shared between all three versions of the site, using a mounted Amazon EFS filesystem (couldn't use S3 due to plugin conflicts). Here's where the problem comes in.
+
+The Live and Kiosk servers share the same RDS database, so their media libraries are always in sync. However, the Beta server uses its own separate database for testing purposes - and since WP media library objects are stored in the DB, this leads to the following issues:
+
+When a file is uploaded to the Beta site, it isn't automatically added to the media library on the Live/Kiosk sites (and vice-versa)
+When a file is removed from the shared upload folder, it isn't automatically removed from the media library, leading to broken/empty media library entries.
+There's nothing necessarily wrong with this; it's just how Wordpress works. I've been circumventing the issue by using the "Add From Server" plugin which allows me to manually keep the media libraries in sync - but it would be nice to automate this.
+
+So I think either of the following solutions would work:
+
+A method to keep the "media" table of the two databases in sync, while keeping the rest of the tables separate
+A method to automatically update the media library on all 3 servers according to the content of the wp-content/uploads folder, which is also smart enough to ignore thumbnail versions (the "Add From Server" plugin unfortunately doesn't do this, so when I tried I ended up with countless "thumbnails of thumbnails" if that makes sense)
+Has anyone worked with a similar environment before? Any ideas regarding either of my proposed solutions, or possibly a better solution? Thanks in advance.
+
+Solutions
+As for the dev/staging environments I usually use rsync in combination with crontab or Jenkins and symlink the copied media folder to wp-content/uploads everytime I build the staging with a dump of the production db.
+
+This will also give you the perk of automatically having backups of your db and media folder on a different server.
+
+I'd generally advice against updating the live db by altering a beta/dev environment since this usually defies the purpose of that kind of environment.
+
+Regarding keeping kiosk and production in sync, the plugin WPSiteSync looks promising. I haven't tried it in production yet but it should fit your requirements.
+
