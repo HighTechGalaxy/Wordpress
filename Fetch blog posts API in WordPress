@@ -1,0 +1,51 @@
+# Activate blog posts API in WordPress
+
+# To activate the blog post API in WordPress, open functions.php
+
+<?php
+  // custom function to fetch all posts
+  function w3_get_all_posts( $data, $post, $context ) {
+    return [
+      'id'       => $data->data['id'], // post ID
+      'date'     => date('F d, Y', strtotime($data->data['date'])), // post date
+      'title'    => $data->data['title']['rendered'], // post title
+      'content'  => $data->data['content']['rendered'], // post content
+      'excerpt'  => $data->data['excerpt']['rendered'], // post excerpt
+      'image'    => wp_get_attachment_image_src($data->data['featured_media'], 'original')[0], // get image URL
+      'category' => get_the_category_by_ID( $data->data['categories'][0] ), // get category name
+      'link'     => $data->data['link'], // post URL
+    ];
+  }
+
+  // register the filter
+  add_filter( 'rest_prepare_post', 'w3_get_all_posts', 10, 3 );
+?>
+
+
+# Target (non-WordPress) website integration
+The following script will fetch content from API and will store it in $json variable:
+
+<?php
+  // API endpoint
+  $json = file_get_contents("https://www.your-site.com/wp-json/wp/v2/posts?per_page=3");
+?>
+
+
+The full code to fetch content from the posts API is:
+
+<?php
+  // get dynamic blogs from WordPress
+  $json = file_get_contents("https://www.your-site.com/wp-json/wp/v2/posts?per_page=3");
+  // Convert the JSON to an array of posts
+  $posts = json_decode($json);
+  // iterate through each post
+  foreach ($posts as $p) {
+    echo 'URL: '.$p->link.'<br>';
+    echo 'Category: '.$p->category.'<br>';
+    echo 'Title: '.$p->title.'<br>';
+    echo 'Image: '.$p->image.'<br>';
+    echo 'Content: '.$p->content.'<br>';
+    echo 'Excerpt: '.$p->excerpt.'<br>';
+    echo 'Date: '.$p->date;
+  }
+?>
