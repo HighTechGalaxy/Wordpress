@@ -1,3 +1,28 @@
+Step 1: Prepare Code Snippets
+# To add code to your header, use this code snippet:
+
+/* Describe what the code snippet does so you can remember later on */
+add_action('wp_head', 'your_function_name');
+function your_function_name(){
+?>
+PASTE HEADER CODE HERE
+<?php
+};
+
+# To add code to your footer, use this code snippet:
+
+/* Describe what the code snippet does so you can remember later on */
+add_action('wp_footer', 'your_function_name');
+function your_function_name(){
+?>
+PASTE FOOTER CODE HERE
+<?php
+};
+
+
+
+
+
 #Registering Sidebars or Widget Areas in WordPress
 If you want to add or register sidebars to your website without plugin.
 Then paste the code given below in your functions.php file located at 
